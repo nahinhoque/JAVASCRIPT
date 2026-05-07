@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>JSproject</title>
+</head>
+
+<body class="flex flex-col items-center justify-center h-screen bg-gray-50 gap-4">
+    <span class="text-gray-400 uppercase text-xs">Total Count</span>
+    <h1 id="count" class="text-6xl font-bold transition-all">0</h1>
+
+    <div class="flex flex-col items-center gap-1">
+        <label for="step" class="text-xs text-gray-500">Step Amount</label>
+        <input id="step" type="number" value="1" class="w-20 border rounded p-1 text-center font-semibold">
+    </div>
+
+    <div class="flex gap-3">
+        <button onclick="change(-1)"
+            class="px-6 py-2 bg-red-500 text-white rounded-lg  transition-transform cursor-pointer">-
+            Sub</button>
+
+        <button onclick="reset()"
+            class="px-6 py-2 bg-gray-400 text-white rounded-lg  transition-transform cursor-pointer">Reset</button>
+
+        <button onclick="change(1)"
+            class="px-6 py-2 bg-green-500 text-white rounded-lg transition-transform cursor-pointer">+
+            Add</button>
+    </div>
+
+    <script>
+        let count = 0;
+
+        function change(typee) {
+            // 1. Get the step value from the input field and convert to a number
+            const stepValue = Number(document.getElementById('step').value);
+
+            // 2. Calculate new count OR this logic let result = count + (typee * stepValue);
+            // if (result < 0) {
+            //     count = 0; // Don't allow negatives
+            // } else {
+            //     count = result; // Normal update
+            // }
+
+            count = Math.max(0, count + (typee * stepValue));
+
+            // 3. Log values to console
+            console.log(typee, count, stepValue);
+
+            // 4. Update the display on the screen
+            const display = document.getElementById('count');
+            display.textContent = count;
+
+        }
+        // Reset function 
+        function reset() {
+            count = 0;
+            const display = document.getElementById('count');
+            display.textContent = count;
+        }
+    </script>
+</body>
+</body>
+
+</html>

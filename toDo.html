@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>toDo</title>
+</head>
+
+<body class="bg-gray-100 h-screen justify-center items-center flex">
+    <div class="bg-white p-6 rounded shadow w-80">
+        <div class="flex mb-4">
+            <input type="text" id="input" class="border p-2 flex-1" placeholder="Create New Task...">
+            <button onclick="add()" class="ml-2 px-3 bg-blue-500 text-white
+            cursor-pointer">+</button>
+        </div>
+
+        <ul id="list"></ul>
+    </div>
+    <script>
+        function add() {
+            const val = document.getElementById("input").value;
+
+            if (!val) return;
+
+            const li = document.createElement("li");
+            li.className = "mb-2 cursor-pointer";
+            li.innerText = val;
+
+            li.onclick = () => {
+                li.classList.toggle('line-through');
+                li.classList.toggle("text-gray-400");
+            }
+
+            document.getElementById("list").appendChild(li);
+            document.getElementById("input").value = "";
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Color gen</title>
+</head>
+
+<body id="body" class="flex items-center justify-center h-screen">
+
+    <div class="bg-white p-6 rounded shadow text-center">
+        <p id="code" class="mb-4">#FFFFFF</p>
+
+        <div class="space-x-2">
+            <button onclick="change()" class="px-4 py-2 bg-black text-white rounded cursor-pointer">
+                Change
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function change() {
+            // Generates a random number, converts it to Hexadecimal (base 16), 
+            // and ensures it is 6 characters long
+            const color = "#" + Math.floor(Math.random() * 16777215).toString(16).padStart(6, "0");
+
+            document.getElementById("code").textContent = color;
+            document.getElementById("body").style.background = color;
+        }
+    </script>
+
+</body>
+
+</html>

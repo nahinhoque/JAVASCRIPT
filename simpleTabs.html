@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Document</title>
+</head>
+
+<body class="flex items-center justify-center h-screen bg-gray-100">
+    <div class="bg-white p-6 rounded shadow w-80 text-center">
+        <div class="space-x-2 mb-4">
+            <button onclick="show('a')" id="a" class="px-3 py-1 bg-blue-500 text-white cursor-pointer">
+                TAB A
+            </button>
+            <button onclick="show('b')" id="b" class="px-3 py-1 bg-blue-500 text-white cursor-pointer">
+                TAB B
+            </button>
+            <button onclick="show('c')" id="c" class="px-3 py-1 bg-blue-500 text-white cursor-pointer">
+                TAB C
+            </button>
+        </div>
+
+        <p id="content" class="hidden font-medium text-gray-700"></p>
+    </div>
+
+    <script>
+        function show(tab) {
+            const contentEl = document.getElementById("content");
+            contentEl.classList.remove("hidden");
+
+            switch (tab) {
+                case "a":
+                    contentEl.innerText = "Content For TAB A"
+                    break;
+
+                case "b":
+                    contentEl.innerText = "Content For TAB B"
+                    break;
+
+                case "c":
+                    contentEl.innerText = "Content For TAB C"
+                    break;
+            }
+        }
+    </script>
+
+</body>
+
+</html>

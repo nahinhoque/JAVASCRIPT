@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Quote Generator</title>
+</head>
+
+<body class="flex items-center justify-center h-screen bg-gray-100">
+    <div class="bg-white p-6 rounded shadow max-w-md text-center">
+        <p id="quote" class="mb-4">Click for quote</p>
+
+        <button onclick="getQuote()" class="px-4 py-2 bg-blue-500 text-white rounded cursor-pointer">
+            New Quote
+        </button>
+    </div>
+
+    <script>
+        async function getQuote() {
+            const el = document.getElementById('quote');
+            el.textContent = 'Loading...';
+
+            try {
+                // 1. Fetch the data first
+                const res = await fetch('https://dummyjson.com/quotes/random');
+
+                // 2. Check if the server respond with an error 404 or 500
+                // If res.ok is true (success), !res.ok becomes false. The code inside the if block is skipped.
+                // If res.ok is false (error), !res.ok becomes true. The code inside the if block runs.
+                if (!res.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                // 3. Parse the data if the response is success
+                const data = await res.json();
+
+                el.textContent = `"${data.quote}" — ${data.author}`;
+
+            } catch (error) {
+                el.textContent = 'Error fetching quote';
+                console.error("Fetch error:", error);
+            }
+        }
+
+    </script>
+</body>
+
+</html>
