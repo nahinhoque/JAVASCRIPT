@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Simple Calculator</title>
+</head>
+
+<body class="bg-gray-900 flex items-center justify-center min-h-screen antialiased selection:bg-blue-500/30">
+
+    <div class="bg-gray-800 p-10 rounded-3xl shadow-2xl w-[450px] border border-gray-700/50">
+
+        <input id="display"
+            class="w-full mb-6 p-6 text-right text-5xl bg-gray-900/50 text-white rounded-xl outline-none border-b-2 border-gray-700 font-mono"
+            disabled type="text">
+        <div class="grid grid-cols-4 gap-4 text-white font-semibold text-xl">
+
+
+            <!-- Row 1 -->
+            <button class="bg-red-500 hover:bg-red-400 active:scale-95 transition-all p-5 rounded-xl cursor-pointer"
+                onclick="clearDisplay()">C</button>
+            <button
+                class="bg-yellow-500 hover:bg-yellow-400 active:scale-95 transition-all p-5 rounded-xl cursor-pointer text-gray-900"
+                onclick="deleted()">DEL</button>
+            <button
+                class="bg-orange-500 hover:bg-orange-400 active:scale-95 transition-all p-5 rounded-xl cursor-pointer"
+                onclick="appendVlaue('%')">%</button>
+            <button
+                class="bg-purple-600 hover:bg-purple-500 active:scale-95 transition-all p-5 rounded-xl cursor-pointer"
+                onclick="appendVlaue('÷')">÷</button>
+
+            <!-- Row 2 -->
+            <button class="bg-gray-700 hover:bg-gray-600 active:scale-95 transition-all p-5 rounded-xl cursor-pointer"
+                onclick="appendVlaue('7')">7</button>
+            <button class="bg-gray-700 hover:bg-gray-600 active:scale-95 transition-all p-5 rounded-xl cursor-pointer"
+                onclick="appendVlaue('8')">8</button>
+            <button class="bg-gray-700 hover:bg-gray-600 active:scale-95 transition-all p-5 rounded-xl cursor-pointer"
+                onclick="appendVlaue('9')">9</button>
+            <button class="bg-blue-600 hover:bg-blue-500 active:scale-95 transition-all p-5 rounded-xl cursor-pointer"
+                onclick="appendVlaue('x')">x</button>
+
+            <!-- Row 3 -->
+            <button class="bg-gray-700 hover:bg-gray-600 active:scale-95 transition-all p-5 rounded-xl cursor-pointer"
+                onclick="appendVlaue('4')">4</button>
+            <button class="bg-gray-700 hover:bg-gray-600 active:scale-95 transition-all p-5 rounded-xl cursor-pointer"
+                onclick="appendVlaue('5')">5</button>
+            <button class="bg-gray-700 hover:bg-gray-600 active:scale-95 transition-all p-5 rounded-xl cursor-pointer"
+                onclick="appendVlaue('6')">6</button>
+            <button class="bg-blue-600 hover:bg-blue-500 active:scale-95 transition-all p-5 rounded-xl cursor-pointer"
+                onclick="appendVlaue('-')">-</button>
+
+            <!-- Row 4 -->
+            <button class="bg-gray-700 hover:bg-gray-600 active:scale-95 transition-all p-5 rounded-xl cursor-pointer"
+                onclick="appendVlaue('1')">1</button>
+            <button class="bg-gray-700 hover:bg-gray-600 active:scale-95 transition-all p-5 rounded-xl cursor-pointer"
+                onclick="appendVlaue('2')">2</button>
+            <button class="bg-gray-700 hover:bg-gray-600 active:scale-95 transition-all p-5 rounded-xl cursor-pointer"
+                onclick="appendVlaue('3')">3</button>
+            <button class="bg-blue-600 hover:bg-blue-500 active:scale-95 transition-all p-5 rounded-xl cursor-pointer"
+                onclick="appendVlaue('+')">+</button>
+
+            <!-- Row 5 -->
+            <button class="bg-gray-700 hover:bg-gray-600 active:scale-95 transition-all p-5 rounded-xl cursor-pointer"
+                onclick="appendVlaue('0')">0</button>
+            <button class="bg-gray-700 hover:bg-gray-600 active:scale-95 transition-all p-5 rounded-xl cursor-pointer"
+                onclick="appendVlaue('.')">.</button>
+            <button
+                class="bg-green-600 hover:bg-green-500 active:scale-[0.98] transition-all p-5 rounded-xl cursor-pointer col-span-2 shadow-lg shadow-green-900/20"
+                onclick="calculate()">=</button>
+            <!-- Row 5 End -->
+
+        </div>
+    </div>
+
+
+    <script>
+        const display = document.getElementById('display');
+
+        //C btn
+        function clearDisplay() {
+            display.value = "";
+        }
+
+        //DEL btn
+        function deleted() {
+            display.value = display.value.slice(0, -1);
+        }
+
+        //% btn
+        function appendVlaue(value) {
+            display.value = display.value + value;
+        }
+
+        //= btn
+        function calculate() {
+            try {
+                let expression = display.value.replace(/x/g, "*").replace(/÷/g, "/");
+                display.value = eval(expression);
+            } catch (error) {
+                console.log(error);
+                display.value = error.message || "Math Error";
+            }
+        }
+    </script>
+</body>
+
+</html>

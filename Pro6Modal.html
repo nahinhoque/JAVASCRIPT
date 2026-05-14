@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Modal Popup</title>
+</head>
+
+<body class="bg-gray-900 flex items-center justify-center min-h-screen text-white">
+
+    <button class="bg-blue-500 px-6 py-3 rounded-lg hover:bg-blue-600 transition cursor-pointer" onclick="openModal()">
+        Open Modal
+    </button>
+
+    <div id="modal" class="fixed inset-0 bg-black bg-opacity-60 items-center justify-center flex hidden">
+        <div class="bg-gray-800 p-6 rounded-xl relative w-80 m-auto">
+            <button class="absolute top-2 right-3 text-xl cursor-pointer" onclick="closeModal()">
+                &times;
+            </button>
+
+            <h2 class="text-xl font-bold mb-4">Modal Title</h2>
+            <p class="text-gray-300 mb-4">
+                This is a simple modal popup using Tailwind CSS and Javascript.
+            </p>
+
+            <button class="bg-red-500 px-4 py-2 rounded hover:bg-red-600 cursor-pointer" onclick="closeModal()">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('modal');
+
+        function openModal() {
+            modal.classList.remove('hidden')
+            modal.classList.add('flex')
+        }
+        function closeModal() {
+            modal.classList.add('hidden')
+            modal.classList.remove('flex')
+        }
+        window.addEventListener("click", function (e) {
+            if (e.target === modal) {
+                closeModal()
+            }
+        })
+    </script>
+
+
+</body>
+
+</html>
